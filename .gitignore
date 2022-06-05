@@ -1,0 +1,10 @@
+####### Ignore files - folders #######
+tmp/
+.idea
+.air.toml
+Makefile
+dist/
+.vscode
+.DS_Store
+.git
+database.yml
