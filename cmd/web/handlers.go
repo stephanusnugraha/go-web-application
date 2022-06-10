@@ -8,7 +8,7 @@ func (app *application) VirtualTerminal(w http.ResponseWriter, r *http.Request) 
 	}
 }
 
-func (app application) PaymentSucceeded(w http.ResponseWriter, r *http.Request) {
+func (app *application) PaymentSucceeded(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		app.errorLog.Println(err)
@@ -34,6 +34,13 @@ func (app application) PaymentSucceeded(w http.ResponseWriter, r *http.Request) 
 	if err := app.renderTemplate(w, r, "succeeded", &templateData{
 		Data: data,
 	}); err != nil {
+		app.errorLog.Println(err)
+	}
+}
+
+// ChargeOnce displays the page to buy one widget
+func (app *application) ChargeOnce(w http.ResponseWriter, r *http.Request) {
+	if err := app.renderTemplate(w, r, "buy-once", nil); err != nil {
 		app.errorLog.Println(err)
 	}
 }
