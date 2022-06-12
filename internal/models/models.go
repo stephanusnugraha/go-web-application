@@ -119,7 +119,7 @@ func (m *DBModel) GetWidget(id int) (Widget, error) {
 }
 
 // InsertTransaction inserts a new txn, and returns its id
-func (m DBModel) InsertTransaction(txn Transaction) (int, error) {
+func (m *DBModel) InsertTransaction(txn Transaction) (int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
@@ -152,7 +152,7 @@ func (m DBModel) InsertTransaction(txn Transaction) (int, error) {
 }
 
 // InsertOrder inserts a new order, and returns its id
-func (m DBModel) InsertOrder(order Order) (int, error) {
+func (m *DBModel) InsertOrder(order Order) (int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
