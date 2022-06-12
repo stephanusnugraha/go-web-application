@@ -1,18 +1,18 @@
 {{template "base" .}}
 
 {{define "title"}}
-    Buy One Widget
+    Buy one widget
 {{end}}
 
 {{define "content"}}
     {{$widget := index .Data "widget"}}
 
     <h2 class="mt-3 text-center">Buy One Widget</h2>
-        <hr>
-        <img src="/static/widget.png" alt="widget" class="image-fluid rounded mx-auto d-block">
+    <hr>
+    <img src="/static/widget.png" alt="widget" class="image-fluid rounded mx-auto d-block">
 
-    <div class="alert alert-danger text-center d-none" id="card-messages">
-    </div>
+
+    <div class="alert alert-danger text-center d-none" id="card-messages"></div>
 
     <form action="/payment-succeeded" method="post"
           name="charge_form" id="charge_form"
@@ -34,7 +34,7 @@
 
         <div class="mb-3">
             <label for="cardholder-email" class="form-label">Cardholder Email</label>
-            <input type="text" class="form-control" id="cardholder-email" name="email"
+            <input type="email" class="form-control" id="cardholder-email" name="email"
                    required="" autocomplete="cardholder-email-new">
         </div>
 
@@ -66,4 +66,3 @@
 {{define "js"}}
     {{template "stripe-js" .}}
 {{end}}
-

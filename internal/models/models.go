@@ -92,10 +92,25 @@ func (m *DBModel) GetWidget(id int) (Widget, error) {
 
 	var widget Widget
 
-	querySQL := `select id, name from widgets where id = ?`
+	querySQL := `
+		select id, name, description, inventory_level, price, coalesce(image, ''), 
+			created_at, updated_at
+		from
+		    widgets
+		where id = ?
+	`
 
 	row := m.DB.QueryRowContext(ctx, querySQL, id)
-	err := row.Scan(&widget.ID, &widget.Name)
+	err := row.Scan(
+		&widget.ID,
+		&widget.Name,
+		&widget.Description,
+		&widget.InventoryLevel,
+		&widget.Price,
+		&widget.Image,
+		&widget.CreatedAt,
+		&widget.UpdatedAt,
+	)
 	if err != nil {
 		return widget, err
 	}
