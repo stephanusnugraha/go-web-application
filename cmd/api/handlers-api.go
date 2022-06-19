@@ -256,7 +256,7 @@ func (app *application) CreateAuthToken(w http.ResponseWriter, r *http.Request) 
 
 	user, err := app.DB.GetUserByEmail(userInput.Email)
 	if err != nil {
-		
+
 	}
 
 	var payload struct {
