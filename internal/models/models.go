@@ -247,14 +247,12 @@ func (m *DBModel) GetUserByEmail(email string) (User, error) {
 	email = strings.ToLower(email)
 	var u User
 
-	querySQL := `
-		select 
+	row := m.DB.QueryRowContext(ctx, `
+		select
 			id, first_name, last_name, email, password, created_at, updated_at
-		form
+		from
 			users
-		where email = ?
-	`
-	row := m.DB.QueryRowContext(ctx, querySQL, email)
+		where email = ?`, email)
 
 	err := row.Scan(
 		&u.ID,
