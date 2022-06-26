@@ -4,6 +4,7 @@ import (
 	"encoding/gob"
 	"flag"
 	"fmt"
+	"github.com/alexedwards/scs/mysqlstore"
 	"github.com/alexedwards/scs/v2"
 	"github.com/stephanusnugraha/go-web-application/internal/driver"
 	"github.com/stephanusnugraha/go-web-application/internal/models"
@@ -83,6 +84,7 @@ func main() {
 	// set up session
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
+	session.Store = mysqlstore.New(conn)
 
 	tc := make(map[string]*template.Template)
 
