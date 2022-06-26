@@ -28,7 +28,6 @@ func (app application) routes() http.Handler {
 	mux.Route("/api/admin", func(r chi.Router) {
 		r.Use(app.Auth)
 
-
 	})
 
 	return mux
